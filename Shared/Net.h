@@ -17,7 +17,7 @@ extern bool Listen(const SOCKET Socket, const unsigned int Backlog);
 extern bool Accept(const SOCKET ServerSocket, SOCKET &Client, std::string *const ClientAddress,
 					bool *const AddressIsIPV4, unsigned short *const ClientPort);
 
-extern bool Connect(const SOCKET Socket, const std::string &Address, const bool AddressIsIPV4, const unsigned short *const Port);
+extern bool Connect(const SOCKET Socket, const std::string &Address, const bool AddressIsIPV4, const unsigned short &Port);
 
 extern bool Send(const SOCKET Socket, const char *const Data, const unsigned int Length);
 extern bool Send(const SOCKET Socket, const unsigned long Data);

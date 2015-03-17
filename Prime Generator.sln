@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Client.vcxproj", "{85E77E25-8D3D-41A7-BDE1-8C995EE656BC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2E066294-0F30-4F41-BF78-1060FF4CB694} = {2E066294-0F30-4F41-BF78-1060FF4CB694}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server", "Server\Server.vcxproj", "{C108A57E-DF5E-4D88-AABB-9EDEEAB84718}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2E066294-0F30-4F41-BF78-1060FF4CB694} = {2E066294-0F30-4F41-BF78-1060FF4CB694}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shared", "Shared\Shared.vcxproj", "{2E066294-0F30-4F41-BF78-1060FF4CB694}"
 EndProject

@@ -26,10 +26,22 @@ int main(int argc, char *argv[])
 		bool IsIPV4;
 		unsigned short Port;
 		if (!Accept(ServerSocket, Client, &Address, &IsIPV4, &Port))
+			break;
+
+		while (true)
 		{
-			return -5;
+			std::string Message;
+			if (!ReceiveString(Client, &Message))
+			{
+				std::cout << "Client disconnected" << std::endl;
+				break;
+			}
+
+			std::cout << Message << std::endl;
 		}
 	}
+
+	WSAClose();
 
 	return 0;
 }

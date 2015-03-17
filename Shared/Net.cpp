@@ -14,7 +14,8 @@ bool WSANeeded()
 
 bool WSAStart()
 {
-	return WSAStartup(MAKEWORD(2, 2), NULL) == 0;
+	WSAData Data;
+	return WSAStartup(MAKEWORD(2, 2), &Data) == 0;
 }
 bool WSAClose()
 {
@@ -23,8 +24,8 @@ bool WSAClose()
 
 bool Create(SOCKET &Out)
 {
-	Out = socket(AF_INET, SOCK_STREAM, PF_INET);
-	if (Out < 0)
+	Out = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	if (Out == -1)
 		return false;
 
 	return true;
@@ -78,10 +79,10 @@ bool Accept(const SOCKET ServerSocket, SOCKET &Client, std::string *const Client
 	return true;
 }
 
-bool Connect(const SOCKET Socket, const std::string &Address, const bool AddressIsIPV4, const unsigned short *const Port)
+bool Connect(const SOCKET Socket, const std::string &Address, const bool AddressIsIPV4, const unsigned short &Port)
 {
 	sockaddr_in Target;
-	Target.sin_port = htons((Port == NULL ? 0 : *Port));
+	Target.sin_port = htons(Port);
 	Target.sin_family = AddressIsIPV4 ? AF_INET : AF_INET6;
 
 	if (inet_pton(Target.sin_family, Address.c_str(), &Target.sin_addr) < 0)
@@ -152,5 +153,5 @@ bool ReceiveString(const SOCKET Socket, std::string *const Out)
 
 	Out->resize(Size);
 
-	return Receive(Socket, (char *const)Out, Size);
+	return Receive(Socket, (char *const)&(*Out)[0], Size);
 }
