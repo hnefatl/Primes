@@ -139,11 +139,15 @@ bool Receive(const SOCKET Socket, char *const Buffer, const unsigned int Length)
 }
 bool ReceiveUlong(const SOCKET Socket, unsigned long *const Out)
 {
-	return Receive(Socket, (char* const)Out, sizeof(unsigned long));
+	bool Result = Receive(Socket, (char* const)Out, sizeof(unsigned long));
+	*Out = ntohl(*Out);
+	return Result;
 }
 bool ReceiveUshort(const SOCKET Socket, unsigned short *const Out)
 {
-	return Receive(Socket, (char* const)Out, sizeof(unsigned short));
+	bool Result = Receive(Socket, (char* const)Out, sizeof(unsigned short));
+	*Out = ntohs(*Out);
+	return Result;
 }
 bool ReceiveString(const SOCKET Socket, std::string *const Out)
 {
